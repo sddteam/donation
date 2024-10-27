@@ -143,6 +143,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\home.css" />
+    <Content Include="Content\images\bastion-logo.png" />
+    <Content Include="Content\images\bg-template.png" />
+    <Content Include="Content\images\img-template.jpeg" />
+    <Content Include="Content\images\omnipay-logo.png" />
+    <Content Include="Content\images\samplePHQR.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
