@@ -1,10 +1,14 @@
 ﻿:root {
   --primary-color: 0, 0, 0;
-  --secondary-color: rgba(var(--primary-color), 0.5);
+  --secondary-color: rgba(var(--primary-color), 0.7);
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(208, 223, 220);
   width: 100%;
   /* margin-top: 15px;
   padding-left: 15px;
