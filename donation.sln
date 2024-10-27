@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "donation", "donation.csproj", "{A94E321A-558F-41AA-87F9-D25CC54BC62A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A94E321A-558F-41AA-87F9-D25CC54BC62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94E321A-558F-41AA-87F9-D25CC54BC62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94E321A-558F-41AA-87F9-D25CC54BC62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94E321A-558F-41AA-87F9-D25CC54BC62A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FEAC103F-23E1-454B-8B22-7DA5EC22729A}
+	EndGlobalSection
+EndGlobal
