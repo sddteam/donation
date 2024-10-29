@@ -6,12 +6,15 @@
 @section styles {
     <!-- <link href="~/Content/home.css" rel="stylesheet" /> -->
     <style>
+        
     * {
         box-sizing: border-box;
         color: rgb(var(--primary-color));
     }
 
     main {
+        --secondary-color: rgba(var(--primary-color), 0.7);
+
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         height: 100%;

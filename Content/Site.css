@@ -1,7 +1,11 @@
 ﻿:root {
   --primary-color: 26, 60, 93;
-  --secondary-color: rgba(var(--primary-color), 0.7);
+  --secondary-color: 255, 255, 255;
   --avatar: 28rem;
+}
+
+body {
+  background-color: rgb(var(--primary-color));
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -10,31 +14,45 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-image: url("/Content/images/OPT2A/bg.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* background-color: rgba(255, 255, 255, 0.3);  */
-    background: transparent
-      linear-gradient(
-        180deg,
-        #1a3c5d33 0%,
-        #1a3c5d 0%,
-        #1a3c5d80 43%,
-        #1a3c5d80 88%,
-        #1a3c5d 100%
-      )
-      0% 0% no-repeat padding-box;
-    z-index: 1;
-    opacity: 0.3;
+  &:has(main.OPT2A) {
+    background-image: url("/Content/images/OPT2A/bg.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* background-color: rgba(255, 255, 255, 0.3);  */
+      background: transparent
+        linear-gradient(
+          180deg,
+          #1a3c5d33 0%,
+          #1a3c5d 0%,
+          #1a3c5d80 43%,
+          #1a3c5d80 88%,
+          #1a3c5d 100%
+        )
+        0% 0% no-repeat padding-box;
+      z-index: 1;
+      opacity: 0.3;
+    }
+  }
+
+  &:has(main.OPT2B) {
+    background-image: url("/Content/images/OPT2B/bg.png");
+    background-position-y: -20rem;
+
+    &::before {
+      background: none;
+      /* background: transparent url('img/signal-2024-10-28-153244_002.png') 0% 0% no-repeat padding-box;; */
+      opacity: 1;
+    }
   }
 
   * {
