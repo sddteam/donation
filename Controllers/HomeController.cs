@@ -13,5 +13,17 @@ namespace donation.Controllers
             return View();
         }
 
+        public ActionResult Index2a()
+        {
+            return View();
+        }
+
+        public ActionResult Index2b()
+        {
+            return View();
+        }
+
+
+
     }
 }
