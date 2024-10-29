@@ -1,7 +1,7 @@
 ﻿:root {
   --primary-color: 26, 60, 93;
   --secondary-color: rgba(var(--primary-color), 0.7);
-  --avatar: 22rem;
+  --avatar: 28rem;
 }
 
 /* Set padding to keep content from hitting the edges */
