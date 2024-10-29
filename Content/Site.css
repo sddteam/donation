@@ -1,6 +1,7 @@
 ﻿:root {
-  --primary-color: 0, 0, 0;
+  --primary-color: 26, 60, 93;
   --secondary-color: rgba(var(--primary-color), 0.7);
+  --avatar: 22rem;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -8,8 +9,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(208, 223, 220);
   width: 100%;
+  background-image: url("/Content/images/OPT2A/bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(255, 255, 255, 0.3);  */
+    background: transparent
+      linear-gradient(
+        180deg,
+        #1a3c5d33 0%,
+        #1a3c5d 0%,
+        #1a3c5d80 43%,
+        #1a3c5d80 88%,
+        #1a3c5d 100%
+      )
+      0% 0% no-repeat padding-box;
+    z-index: 1;
+    opacity: 0.3;
+  }
+
+  * {
+    z-index: 2;
+  }
+
   /* margin-top: 15px;
   padding-left: 15px;
   padding-right: 15px; */

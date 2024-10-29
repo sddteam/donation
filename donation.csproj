@@ -148,6 +148,11 @@
     <Content Include="Content\images\bg-template.png" />
     <Content Include="Content\images\img-template.jpeg" />
     <Content Include="Content\images\omnipay-logo.png" />
+    <Content Include="Content\images\OPT2A\avatar.png" />
+    <Content Include="Content\images\OPT2A\bastion-logo.png" />
+    <Content Include="Content\images\OPT2A\bg.png" />
+    <Content Include="Content\images\OPT2A\mock-qr.png" />
+    <Content Include="Content\images\OPT2A\omnipay-logo.png" />
     <Content Include="Content\images\samplePHQR.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -181,6 +186,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index2a.cshtml" />
+    <Content Include="Views\Home\Index2b.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
