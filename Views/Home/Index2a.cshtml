@@ -8,7 +8,7 @@
 }
 
 <main class="OPT2A">
-    <section>
+    <section  id="main-section">
         <div class="outer__section">
             <div class="hashtag">
                 <span>#HelpUragon</span>
@@ -31,12 +31,29 @@
                                 <span class="name">Hector Loyola "Long Hair"</span>
                             </div>
                         </div>
-                        <div class="section__qr">
-                            <span>Scan to donate</span>
-                            <div class="qr">
-                                <img src="~/Content/images/OPT2A/qr-code.png" alt="">
+
+                        <form class="donor-info">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Stay anonymous</label>
+                            </div>
+                            <button id="btn-submit" type="submit" class="btn btn-primary">Donate now</button>
+                        </form>
+
+                        @* <div class="section__qr">
+                                <span>Scan to donate</span>
+                                <div class="qr">
+                                    <img src="~/Content/images/OPT2A/qr-code.png" alt="">
+                                </div>
+                            </div> *@
                     </div>
                     <div class="footer">
                         <span>Powered by</span>
@@ -52,5 +69,6 @@
 </main>
 
 @section scripts {
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/home.js"></script>
 }
