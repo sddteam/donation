@@ -151,6 +151,7 @@
     <Content Include="Content\images\OPT2A\avatar.png" />
     <Content Include="Content\images\OPT2A\bastion-logo.png" />
     <Content Include="Content\images\OPT2A\bg.png" />
+    <Content Include="Content\images\OPT2A\mock-favicon.png" />
     <Content Include="Content\images\OPT2A\mock-qr.png" />
     <Content Include="Content\images\OPT2A\omnipay-logo.png" />
     <Content Include="Content\images\OPT2A\qr-code.png" />
