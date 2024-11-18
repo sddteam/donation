@@ -40,7 +40,7 @@ namespace donation.Controllers
             try
             {
                 Donor donorResponse = await _donorService.CreateDonor(donor);
-                if (isAnonymous)
+                if (donorResponse == null)
                 {
                     return Json(new JsonResponse
                     {
