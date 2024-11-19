@@ -1,10 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using System.Configuration;
+@using donation.Models;
+
+@{ 
+    string version = ConfigurationManager.AppSettings[AppSettingsKey.Version];
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Content/images/OPT2A/mock-favicon.png")" />
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Content/images/OPT2A/mock-favicon.png?v=" + version)" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>

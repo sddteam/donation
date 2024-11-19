@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IDonorService.cs" />
+    <Compile Include="Models\AppSettingsKey.cs" />
     <Compile Include="Models\Donor.cs" />
     <Compile Include="Models\JsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
