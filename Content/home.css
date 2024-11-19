@@ -979,6 +979,7 @@ label.error {
 
 .qr-section p {
   font-size: 1.25rem;
+  margin-top: .3rem;
 }
 
 .instruction-section{
@@ -1058,7 +1059,41 @@ label.error {
 
 /* End style for modal*/
 
+/* Start Media Query */
+@media screen and (min-width: 768px){
+  .qr-section h4, .instruction-section h4 {
+    font-size: clamp(1.25rem, 0.6786rem + 1.1905vw, 1.75rem);
+  }
 
+  .qr-section p, .instruction-section p {
+    font-size: clamp(0.75rem, 0.1786rem + 1.1905vw, 1.25rem);
+  }
+
+  .hashtag__swal span{
+    font-size: clamp(1rem, -0.4286rem + 7.1429vw, 2.2rem);
+  }
+
+  .custom-swal-button {
+    width: clamp(6rem, 8vw, 8rem);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    border-radius: clamp(0.5rem, 1vw, 0.75rem);
+    padding: 0.3rem .7rem;;
+  }
+
+  .footer__swal .logos__swal img {
+    width: clamp(8rem, 10vw, 12rem);
+  }
+
+  .footer__swal span {
+    font-size: clamp(0.6rem, 0.1429rem + 0.9524vw, 1rem);
+  }
+
+  .qr-section img {
+    max-width: clamp(11rem, 11vw, 15rem);
+  } 
+}
+
+/* End Media Query */
 main {
   &.OPT2A.OPT2B {
     --primary-color: 255, 255, 255;
