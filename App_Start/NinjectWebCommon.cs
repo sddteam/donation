@@ -6,6 +6,7 @@ namespace donation.App_Start
     using System;
     using System.Web;
     using donation.Interfaces;
+    using donation.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -61,7 +62,7 @@ namespace donation.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDonorService>().To<IDonorService>();
+            kernel.Bind<IDonorService>().To<DonorService>();
         }
     }
 }

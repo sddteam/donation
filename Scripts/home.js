@@ -6,28 +6,42 @@
 
     const donateSwal = await Swal.fire({
         html: `
-            <div class="outer__inner__section__swal ">
-                <div class="hashtag">
+            <div class="outer__inner__section__swal">
+                <div class="hashtag__swal">
                     <span>#HelpUragon</span>
                 </div>
 
-                <div class="inner__section_swal">
-                    <div class="qr-section">
-                        <h4>Scan to donate</h4>
-                        <img src="/Content/images/OPT2A/qr-code.png" alt="QR Code" style="width: 150px; height: 150px; margin: 10px 0;">
-                        <p>
-                            <strong>Thank you</strong><br/>
-                            for your generous donation! You support means so much to us.
-                        </p>
-                    </div>
+                <div class="inner__section__swal">
+                    <div class="body__swal">
+                        <div class="qr-section">
+                            <h4>Scan to donate</h4>
+                            <img src="/Content/images/OPT2A/qr-code.png" alt="QR Code">
+                            <h4>Thank you</h4>
+                            <p>
+                                for your generous donation!
+                                <br/>You support means so much to us.
+                            </p>
+                        </div>
 
-                    <div class="instruction-section">
-                        <p>Open your bank or e-wallet app on your phone. <br> Use the app to scan the QR code shown on the screen </p>
-                        <p style="font-size: 12px;">
-                            Note: This QR code is powered by QR PH and can be scanned using any partner 
-                            <b>bank or e-wallet app</b>.
-                        </p>
-                        <p>A small processing fee will apply to your transaction.</p>
+                        <div class="instruction-section">
+                            <h4>Scan the QR Code</h4>
+                            <p>Open your bank or e-wallet app on your phone. <br> Use the app to scan the QR code shown on the screen </p>
+                            <p>
+                                <span class="note">Note</span>: This QR code is powered by QR PH and can be scanned <br>using any partner
+                                <span class="bank">bank or e-wallet app</span>.
+                            </p>
+                            <p>A small processing fee will apply to your transaction.</p>
+
+                            <button class="custom-swal-button" onclick="Swal.close()">Close</button>
+
+                            <div class="footer__swal">
+                                <span>Powered by</span>
+                                <div class="logos__swal">
+                                    <img src="/Content/images/OPT2A/omnipay-logo.png" alt="OmniPay Logo">
+                                    <img src="/Content/images/OPT2A/bastion-logo.png" alt="Bastion Logo">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,12 +49,10 @@
         // confirmButtonText: "Close",
         showConfirmButton: false,
         customClass: {
-            popup: "custom-swal-popup outer__section__swal",
-            backdrop: "custom-swal-backdrop",
+            popup: "custom-swal-popup",
             confirmButton: "custom-swal-button",
         },
         showCloseButton: false,
-        footer: '<span>Powered by <b>OMNIPAY</b> & <b>BASTION</b></span>',
         didClose: () => {
             if (sectionElement) {
                 sectionElement.style.display = 'block';
