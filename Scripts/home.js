@@ -96,6 +96,10 @@ $(document).ready(function () {
 
   // Handle "Donate Now" button click
   $(".btn-donate").on("click", function () {
+    if ($("#ContactNumber").val() === "+63 ___ ___ ____") {
+      $("#ContactNumber").val("");
+    }
+
     // Gather form data
     const donorData = {
       Name: $("#Name").val() || null,
