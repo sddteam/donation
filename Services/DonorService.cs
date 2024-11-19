@@ -15,7 +15,7 @@ namespace donation.Services
     public class DonorService : IDonorService
     {
         private readonly string jsonDir = HostingEnvironment.MapPath("~/App_Data");
-        private readonly string jsonFile = ".json";
+        private readonly string jsonFile = "donor.json";
 
         public List<Donor> GetDonors()
         {

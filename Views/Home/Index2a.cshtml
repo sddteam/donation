@@ -30,7 +30,7 @@
                                 <span class="name">Hector Loyola "Long Hair"</span>
                             </div>
                         </div>
-                        <div class="form-container"> 
+                        <div class="form-container">
                             <form>
                                 @using (Html.BeginForm("SubmitDonorForm", "Home", FormMethod.Post, new { id = "donorForm" }))
                                 {
@@ -49,7 +49,7 @@
                                         <label for="stayAnonymous">Stay anonymous</label>
                                     </div>
 
-                                    <button type="submit" class="btn-donate">Donate Now</button>
+                                    <button type="button" class="btn-donate">Donate Now</button>
                                 }
                             </form>
                         </div>
@@ -74,13 +74,11 @@
 </main>
 
 @section scripts {
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
     $(document).ready(function () {
-        // Handle form submission
-        $('#donorForm').on('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission
-
+        // Handle "Donate Now" button click
+        $('.btn-donate').on('click', function () {
             // Gather form data
             const donorData = {
                 Name: $('#Name').val() || null,
@@ -90,17 +88,24 @@
 
             const isAnonymous = $('#stayAnonymous').is(':checked');
 
+            // Get the Anti-forgery token value
+            const requestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+            // Log gathered data and the request token for debugging
+            console.log("Gathered Data:", donorData);
+            console.log("Is Anonymous:", isAnonymous);
+            console.log("Request Verification Token:", requestVerificationToken);
+
             // Send AJAX POST request
             $.ajax({
                 url: '@Url.Action("SubmitDonorForm", "Home")', // Correctly map to HomeController
                 method: 'POST',
-                contentType: 'application/json',
                 dataType: 'json',
-                data: JSON.stringify({
+                data: {
                     donor: donorData,
                     isAnonymous: isAnonymous,
-                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // Anti-forgery token
-                }),
+                    __RequestVerificationToken: requestVerificationToken // Include token in data
+                },
                 success: function (response) {
                     // Log the full response for debugging
                     console.log("Server Response:", response);
@@ -108,7 +113,7 @@
                     if (response.IsSuccess) {
                         alert(response.Message); // Display success message
                         console.log("Donor Data Saved:", response.ResultJson);
-                        $('#donorForm')[0].reset(); // Clear the form
+                        $('form')[0].reset(); // Clear the form
                     } else {
                         alert("Error: " + (response.Error || response.Message));
                         console.log("Error Details:", response);
@@ -128,10 +133,5 @@
             });
         });
     });
-</script>
-
-
-
-
-
+    </script>
 }
