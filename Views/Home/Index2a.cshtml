@@ -1,9 +1,13 @@
-﻿@{
+﻿@using System.Configuration
+@using donation.Models
+
+@{
     ViewBag.Title = "Help Bicol";
+    string version = ConfigurationManager.AppSettings[AppSettingsKey.Version];
 }
 
 @section styles {
-    <link href="~/Content/home.css" rel="stylesheet" />
+    <link href="~/Content/home.css?v=@version" rel="stylesheet" />
 }
 
 <main class="OPT2A">
@@ -74,8 +78,8 @@
 </main>
 
 @section scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <script src="~/Scripts/jquery-3.6.0.min.js?v=@version"></script>
+    <script data-version="@version">
     $(document).ready(function () {
         // Handle "Donate Now" button click
         $('.btn-donate').on('click', function () {
@@ -111,7 +115,7 @@
                     console.log("Server Response:", response);
 
                     if (response.IsSuccess) {
-                        alert(response.Message); // Display success message
+                        //alert(response.Message); // Display success message
                         console.log("Donor Data Saved:", response.ResultJson);
                         $('form')[0].reset(); // Clear the form
                     } else {
@@ -128,7 +132,7 @@
                     });
 
                     // Display a generic error message
-                    alert("An unexpected error occurred. Please try again later.");
+                    //alert("An unexpected error occurred. Please try again later.");
                 }
             });
         });
