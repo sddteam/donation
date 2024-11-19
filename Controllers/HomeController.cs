@@ -35,11 +35,11 @@ namespace donation.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> SubmitDonorForm(Donor donor)
+        public async Task<JsonResult> SubmitDonorForm(Donor donor, bool isAnonymous)
         {
-            Donor donorResponse = await _donorService.CreateDonor(donor);
             try
             {
+                Donor donorResponse = await _donorService.CreateDonor(donor);
                 if (donorResponse == null)
                 {
                     return Json(new JsonResponse
@@ -52,7 +52,7 @@ namespace donation.Controllers
                 {
                     IsSuccess = true,
                     ResultJson = JsonConvert.SerializeObject(donor),
-                    Message = "Successfully saved donor details!"
+                    //Message = "Successfully saved donor details!"
                 });
             }
             catch (Exception ex)

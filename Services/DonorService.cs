@@ -15,7 +15,7 @@ namespace donation.Services
     public class DonorService : IDonorService
     {
         private readonly string jsonDir = HostingEnvironment.MapPath("~/App_Data");
-        private readonly string jsonFile = ".json";
+        private readonly string jsonFile = "donor.json";
 
         public List<Donor> GetDonors()
         {
@@ -34,7 +34,9 @@ namespace donation.Services
             var store = new DataStore(Path.Combine(jsonDir, jsonFile));
             var collection = store.GetCollection<Donor>();
 
-            bool result = await collection.InsertOneAsync(donor);
+            if (string.IsNullOrEmpty(donor.Name)) donor.Name = "Anonymous Donor";
+
+            bool result = donor != null ? await collection.InsertOneAsync(donor) : false;
 
             return result ? donor : null;
         }
