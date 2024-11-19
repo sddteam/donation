@@ -11,7 +11,7 @@
 }
 
 <main class="OPT2A">
-    <section>
+    <section id="main-section">
         <div class="outer__section">
             <div class="hashtag">
                 <span>#HelpUragon</span>
@@ -53,7 +53,7 @@
                                         <label for="stayAnonymous">Stay anonymous</label>
                                     </div>
 
-                                    <button type="button" class="btn-donate">Donate Now</button>
+                                    <button type="button" class="btn-donate" id="btn-submit">Donate Now</button>
                                 }
                             </form>
                         </div>
@@ -82,7 +82,7 @@
     <script data-version="@version">
     $(document).ready(function () {
         // Handle "Donate Now" button click
-        $('.btn-donate').on('click', function () {
+        $('#btn-submit').on('click', function () {
             // Gather form data
             const donorData = {
                 Name: $('#Name').val() || null,
@@ -138,4 +138,6 @@
         });
     });
     </script>
+    @*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>*@
+    <script src="~/Scripts/home.js"></script>
 }
