@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Help Bicol";
 }
 
@@ -31,12 +30,35 @@
                                 <span class="name">Hector Loyola "Long Hair"</span>
                             </div>
                         </div>
-                        <div class="section__qr">
+                        <div class="form-container"> 
+                            <form>
+                                @using (Html.BeginForm("SubmitDonorForm", "Home", FormMethod.Post, new { id = "donorForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <label for="Name">Donor Name</label>
+                                    <input type="text" id="Name" placeholder="Full Name (Optional)" />
+
+                                    <label for="Email">Email Address</label>
+                                    <input type="email" id="Email" placeholder="Email Address (Optional)" />
+
+                                    <label for="ContactNumber">Contact Number</label>
+                                    <input type="tel" id="ContactNumber" placeholder="09**-****-****" />
+
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="stayAnonymous" />
+                                        <label for="stayAnonymous">Stay anonymous</label>
+                                    </div>
+
+                                    <button type="submit" class="btn-donate">Donate Now</button>
+                                }
+                            </form>
+                        </div>
+                        <!-- <div class="section__qr">
                             <span>Scan to donate</span>
                             <div class="qr">
                                 <img src="~/Content/images/OPT2A/qr-code.png" alt="">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="footer">
                         <span>Powered by</span>
@@ -52,5 +74,64 @@
 </main>
 
 @section scripts {
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Handle form submission
+        $('#donorForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Gather form data
+            const donorData = {
+                Name: $('#Name').val() || null,
+                Email: $('#Email').val() || null,
+                ContactNumber: $('#ContactNumber').val() || null
+            };
+
+            const isAnonymous = $('#stayAnonymous').is(':checked');
+
+            // Send AJAX POST request
+            $.ajax({
+                url: '@Url.Action("SubmitDonorForm", "Home")', // Correctly map to HomeController
+                method: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    donor: donorData,
+                    isAnonymous: isAnonymous,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // Anti-forgery token
+                }),
+                success: function (response) {
+                    // Log the full response for debugging
+                    console.log("Server Response:", response);
+
+                    if (response.IsSuccess) {
+                        alert(response.Message); // Display success message
+                        console.log("Donor Data Saved:", response.ResultJson);
+                        $('#donorForm')[0].reset(); // Clear the form
+                    } else {
+                        alert("Error: " + (response.Error || response.Message));
+                        console.log("Error Details:", response);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Log the error details for debugging
+                    console.error("AJAX Error:", {
+                        xhr: xhr,
+                        status: status,
+                        error: error
+                    });
+
+                    // Display a generic error message
+                    alert("An unexpected error occurred. Please try again later.");
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
 
 }

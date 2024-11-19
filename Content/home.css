@@ -85,6 +85,114 @@ section {
   gap: 2rem;
 }
 
+/* Form Container */
+.form-container {
+  width: 465px;
+  height: 314px;
+  margin: 0px auto;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  border: 1px solid #e6e6e6;
+}
+
+/* Labels and Inputs */
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Spacing between label and input */
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+  width: 280px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+  width: 306px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"],
+input[type="tel"] {
+  display: block;
+  width: 306px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 4px rgba(0, 86, 179, 0.3);
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px; /* Spacing before the button */
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+label[for="stayAnonymous"] {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+}
+
+/* Donate Button */
+.btn-donate {
+  width: 153px;
+  height: 41px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-left: 9.5rem;
+
+
+}
+
+.btn-donate:hover {
+  background-color: #0056b3;
+}
+
 .body {
   flex-direction: row;
   /* align-items: center; */
@@ -97,7 +205,7 @@ section {
   flex-direction: column;
   padding-inline: calc(var(--avatar) - 10vw) 1rem;
   gap: 0.5rem;
-  border-right: 2px solid rgba(112, 112, 112, 0.3);
+  /* border-right: 2px solid rgba(112, 112, 112, 0.3); */
 }
 
 .section__details .title {
@@ -143,6 +251,7 @@ section {
   flex-direction: row;
   justify-content: flex-end;
   gap: 1.5rem;
+  margin-top: -2rem;
 }
 
 .footer span {
@@ -274,69 +383,140 @@ section {
 }
 
 @media screen and (max-width: 425px) {
-  .outer__section {
-    padding-top: 3rem;
+  /* Parent Flex Container */
+  /* Form Container */
+  .form-container {
+    width: 253px;
+    height: 314px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    order: 2; /* Second in order */
+    flex-direction: column;
+    margin-top: 22rem;
   }
 
-  .hashtag {
-    top: -1.5rem;
-  }
-
-  .avatar{
-    width: calc(var(--avatar) - 18rem) !important;
-    left: -2.5rem !important;
-    bottom: 0.5rem !important;
-  }
-
-  .body {
-    flex-direction: column-reverse;
-    gap: 1rem;
-  }
-
-  .inner{
-    align-items: center;
-  }
-
-  .section__details{
+  /* Section Details */
+  .section__details {
     border: 0;
+    order: 1; /* First in order */
+
   }
 
-  .section__qr span{
+  /* Section QR */
+  .section__qr {
+    order: 3; /* Third in order */
+  }
+
+  .section__qr span {
     font-size: clamp(1.2rem, 0.5905rem + 3.0476vw, 1.4rem) !important;
   }
 
-  .section__details .title {
-    text-align: center;
-    margin-left: 1.5rem;
-    margin: 0 auto;
-    /*font-size: clamp(1rem, 0.0857rem + 4.5714vw, 1.3rem);*/
+  /* Author Section */
+  .section__details .author {
+    padding-left: 1rem;
+    /* order: 4; Fourth in order */
   }
 
-  .section__details .description{
-    font-size: clamp(0.55rem, 0.3452rem + 1.5238vw, 0.75rem) !important;
-    max-width: 37ch !important;
-    text-align: start;
-    padding-left: 1rem;
-  }
 
-  .section__details .author{
-    padding-left: 1rem;
-  }
-  
+  /* Footer Section */
   .footer {
     flex-direction: column;
     padding-inline-start: 4rem;
-    gap: .5rem;
+    gap: 0.5rem;
+    order: 5; /* Fifth in order */
   }
 
-  .logos img:first-of-type{
-    padding-top: .37rem;
+  /* Adjustments for Logos in Footer */
+  .logos img:first-of-type {
+    padding-top: 0.37rem;
   }
 
   .footer .logos {
-    gap: .5rem;
+    gap: 0.5rem;
   }
+
+  /* Additional Styling Adjustments */
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px; /* Spacing before the button */
+  }
+
+
+
+  input[type="text"],
+  input[type="tel"] {
+    display: block;
+    width: 220px; /* Full width */
+    height: 27px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px; /* Spacing between fields */
+  }
+
+  input[type="email"] {
+    display: block;
+    width: 220px;
+    height: 27px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px; /* Spacing between fields */
+  }
+
+  input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+
+  label[for="stayAnonymous"] {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+  }
+
+  /* Donate Button */
+  .btn-donate {
+    width: 153px;
+    height: 41px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-left: 4.5rem;
+  }
+
+  .btn-donate:hover {
+    background-color: #0056b3;
+  }
+
+  .description {
+    font-size: clamp(0.8rem, -0.9rem + 3.75vw, 1.1rem);
+    max-width: 38ch;
+    margin-right: -16rem;
+  }
+
+  .section__details .title {
+    font-size: clamp(1.3rem, 0.4rem + 2.5vw, 2rem);
+    max-width: clamp(15ch, 30vw + 40px, 72ch);
+  }
+
 }
+
 
 @media screen and (max-width: 767.98px){
 
@@ -359,8 +539,10 @@ section {
   }
 
   .section__details {
-    padding-left: 8rem;
+    /* padding-left: 8rem; */
     padding-inline: 0;
+    margin-right: -7rem; /* Adds padding on the right */
+    text-align: left; /* Ensures text inside is aligned to the right */
   }
 
   .section__details .title {
@@ -396,7 +578,95 @@ section {
 }
 
 @media screen and (min-width: 768px){
-  
+  /* Form Container */
+.form-container {
+  width: 253px;
+  height: 314px;
+  margin: 0px auto;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  border: 1px solid #e6e6e6;
+}
+
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px; /* Spacing before the button */
+}
+
+input[type="text"],
+input[type="tel"] {
+  display: block;
+  width: 220px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+  width: 220px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+label[for="stayAnonymous"] {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+}
+
+/* Donate Button */
+.btn-donate {
+  width: 153px;
+  height: 41px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-left: 4.5rem;
+
+
+}
+
+.footer {
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: -1rem;
+}
+
+
+.btn-donate:hover {
+  background-color: #0056b3;
+}
+
+  }
   .hashtag span{
     font-size: clamp(1rem, -0.4286rem + 7.1429vw, 2rem);
   }
@@ -451,7 +721,7 @@ section {
     width: 6rem;
   }
 
-}
+
 
 @media screen and (min-width: 1024px){
   .outer__section{
@@ -476,11 +746,13 @@ section {
 
   .section__details .title {
     font-size: clamp(2.1rem, 0.7692rem + 1.9231vw, 4rem);
-    max-width: clamp(15ch, 25vw + 35px, 64ch);
+    max-width: clamp(27ch, 25vw + 35px, 64ch);
+    margin-right: -3rem;
   }
 
   .section__details .description {
     max-width: 50ch;
+    margin-right: -3rem;
   }
 
   .author span{
@@ -502,6 +774,114 @@ section {
   .footer img {
     width: 8rem;
   }
+
+  /* Form Container */
+.form-container {
+  width: 465px;
+  height: 314px;
+  margin: 0px auto;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  margin-right: -1rem;
+}
+
+/* Labels and Inputs */
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Spacing between label and input */
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+  width: 280px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+  width: 306px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"],
+input[type="tel"] {
+  display: block;
+  width: 306px; /* Full width */
+  height: 27px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Spacing between fields */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 4px rgba(0, 86, 179, 0.3);
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px; /* Spacing before the button */
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+label[for="stayAnonymous"] {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+}
+
+/* Donate Button */
+.btn-donate {
+  width: 153px;
+  height: 41px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-left: 9.5rem;
+
+
+}
+
+.btn-donate:hover {
+  background-color: #0056b3;
+}
 }
 
 @media screen and (min-width: 1440px) {
@@ -521,7 +901,8 @@ section {
   }
 
   .section__details .description{
-    max-width: 50ch;
+    max-width: 46ch;
+    margin-right: -12rem;
   }
 
   .section__qr span {
