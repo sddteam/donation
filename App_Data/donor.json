@@ -1,24 +1,9 @@
 {
   "donor": [
     {
-      "name": "Charlie Tomas",
-      "email": "charlierivera.tomas@gmail.com",
-      "contactNumber": "09123456789"
-    },
-    {
-      "name": "Charlie Tomas",
-      "email": "charlierivera.tomas@gmail.com",
-      "contactNumber": "09123456789"
-    },
-    {
-      "name": "Charlie Tomas",
-      "email": "charlierivera.tomas@gmail.com",
-      "contactNumber": "09123456789"
-    },
-    {
-      "name": "jestoni.cruz",
-      "email": "jestoni.cruz@gmail.com",
-      "contactNumber": "09123456789"
+      "name": null,
+      "email": null,
+      "contactNumber": null
     }
   ]
 }

@@ -36,20 +36,27 @@
                                 {
                                     @Html.AntiForgeryToken()
                                     <label for="Name">Donor Name</label>
-                                    <input type="text" id="Name" placeholder="Full Name (Optional)" />
+                                    <input type="text" id="Name"  minlength="3" placeholder="Full Name (Optional)" />
+                                    @*<input type="text" id="Name" placeholder="Full Name (Optional)" />
+                                    <div id="nameWarning" class="warning" style="display:none; color: red;">Please enter a name.</div>*@
 
                                     <label for="Email">Email Address</label>
+                                    @*<input type="email" id="Email" placeholder="Email Address (Optional)" />*@
                                     <input type="email" id="Email" placeholder="Email Address (Optional)" />
+                                    @*<div id="emailWarning" class="warning" style="display:none; color: red;">Please enter a valid email address.</div>*@
 
                                     <label for="ContactNumber">Contact Number</label>
-                                    <input type="tel" id="ContactNumber" placeholder="09**-****-****" />
+                                    <input type="text" id="ContactNumber" minlength="11" placeholder="09**-****-****" />
+                                    @*<input type="tel" id="ContactNumber" placeholder="09**-****-****" />*@
+                                    @*<div id="contactWarning" class="warning" style="display:none; color: red;">Please enter a valid 11-digit contact number.</div>*@
+
 
                                     <div class="checkbox-group">
                                         <input type="checkbox" id="stayAnonymous" />
                                         <label for="stayAnonymous">Stay anonymous</label>
                                     </div>
 
-                                    <button type="button" class="btn-donate">Donate Now</button>
+                                    <button type="button" id="btn-submit" class="btn-donate">Donate Now</button>
                                 }
                             </form>
                         </div>
@@ -75,63 +82,107 @@
 
 @section scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script>
     $(document).ready(function () {
-        // Handle "Donate Now" button click
-        $('.btn-donate').on('click', function () {
-            // Gather form data
-            const donorData = {
-                Name: $('#Name').val() || null,
-                Email: $('#Email').val() || null,
-                ContactNumber: $('#ContactNumber').val() || null
-            };
+    // Function to toggle form field disable state when "Stay anonymous" is checked
+    function toggleAnonymousFields() {
+        const isAnonymous = $('#stayAnonymous').is(':checked');
 
-            const isAnonymous = $('#stayAnonymous').is(':checked');
+        if (isAnonymous) {
+            $('#Name, #Email, #ContactNumber').prop('disabled', true); // Disable the fields
+            $('#Name, #Email, #ContactNumber').addClass('grayed-out'); // Apply grayed-out style
+        } else {
+            $('#Name, #Email, #ContactNumber').prop('disabled', false); // Enable the fields
+            $('#Name, #Email, #ContactNumber').removeClass('grayed-out'); // Remove grayed-out style
+        }
+    }
 
-            // Get the Anti-forgery token value
-            const requestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+    // Handle changes to the "Stay anonymous" checkbox
+    $('#stayAnonymous').on('change', function () {
+        toggleAnonymousFields(); // Toggle form fields state
+    });
 
-            // Log gathered data and the request token for debugging
-            console.log("Gathered Data:", donorData);
-            console.log("Is Anonymous:", isAnonymous);
-            console.log("Request Verification Token:", requestVerificationToken);
+    // Initial toggle on page load
+    toggleAnonymousFields();
 
-            // Send AJAX POST request
-            $.ajax({
-                url: '@Url.Action("SubmitDonorForm", "Home")', // Correctly map to HomeController
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    donor: donorData,
-                    isAnonymous: isAnonymous,
-                    __RequestVerificationToken: requestVerificationToken // Include token in data
-                },
-                success: function (response) {
-                    // Log the full response for debugging
-                    console.log("Server Response:", response);
+    // Handle "Donate Now" button click
+    $('.btn-donate').on('click', function () {
+        // Gather form data
+        const donorData = {
+            Name: $('#Name').val() || null,
+            Email: $('#Email').val() || null,
+            ContactNumber: $('#ContactNumber').val() || null
+        };
 
-                    if (response.IsSuccess) {
-                        alert(response.Message); // Display success message
-                        console.log("Donor Data Saved:", response.ResultJson);
-                        $('form')[0].reset(); // Clear the form
-                    } else {
-                        alert("Error: " + (response.Error || response.Message));
-                        console.log("Error Details:", response);
+        const donorForm = $("form");
+
+        const isAnonymous = $('#stayAnonymous').is(':checked');
+
+        if (!isAnonymous) {
+            $("#donorForm").validate({
+                rules: {
+                    Email: {
+                        required: true,
+                        email: true
                     }
-                },
-                error: function (xhr, status, error) {
-                    // Log the error details for debugging
-                    console.error("AJAX Error:", {
-                        xhr: xhr,
-                        status: status,
-                        error: error
-                    });
-
-                    // Display a generic error message
-                    alert("An unexpected error occurred. Please try again later.");
                 }
             });
+
+            $(donorForm).validate().form();
+
+            if(!donorForm.valid()) {
+                return       
+            }
+        }
+
+        // Get the Anti-forgery token value
+        const requestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+      
+        // Log gathered data and the request token for debugging
+        //console.log("Gathered Data:", donorData);
+        //console.log("Is Anonymous:", isAnonymous);
+        //console.log("Request Verification Token:", requestVerificationToken);
+
+        // Send AJAX POST request
+        $.ajax({
+            url: '@Url.Action("SubmitDonorForm", "Home")', // Correctly map to HomeController
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                donor: donorData,
+                isAnonymous: isAnonymous,
+                __RequestVerificationToken: requestVerificationToken // Include token in data
+            },
+            success: function (response) {
+                // Log the full response for debugging
+                console.log("Server Response:", response);
+
+                if (response.IsSuccess) {
+                    // Display success message
+                    console.log("Donor Data Saved:", response.ResultJson);
+                    $('form')[0].reset(); // Clear the form
+                } else {
+                    alert("Error: " + (response.Error || response.Message));
+                    console.log("Error Details:", response);
+                }
+            },
+            error: function (xhr, status, error) {
+                // Log the error details for debugging
+                console.error("AJAX Error:", {
+                    xhr: xhr,
+                    status: status,
+                    error: error
+                });
+
+                // Display a generic error message
+                alert("An unexpected error occurred. Please try again later.");
+            }
         });
     });
+});
+
     </script>
+
 }
