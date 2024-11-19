@@ -96,7 +96,7 @@ $(document).ready(function () {
 
   // Handle "Donate Now" button click
   $(".btn-donate").on("click", function () {
-    if ($("#ContactNumber").val() === "+63 ___ ___ ____") {
+    if ($("#ContactNumber").val() === "+63 912 345 6789") {
       $("#ContactNumber").val("");
     }
 
@@ -164,7 +164,7 @@ $(document).ready(function () {
 
   $(document).on("input", "#Name", function () {
     console.log("test")
-    this.value = this.value.replace(/[^a-zA-Z]/g, "");
+    this.value = this.value.replace(/[^a-zA-Z ]/g, "");
   });
 
   // $(document).on("input", "#ContactNumber", function () {
@@ -188,6 +188,7 @@ $(document).ready(function () {
             required: true,
           },
           Email: {
+            maxlength: 30,
             required: false, // Optional field
             email: true,
           },
@@ -212,7 +213,10 @@ $(document).ready(function () {
         },
       });
 
-      if (!$("form#donorForm").valid()) {
+      const numberHasUnderscore = () => $("#ContactNumber").val().indexOf("_") !== -1;
+      console.log(numberHasUnderscore())
+
+      if (!$("form#donorForm").valid() || numberHasUnderscore()) {
         $(submitBtnEl).attr("disabled", true);
         return;
       }
@@ -238,6 +242,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#ContactNumber").inputmask("+63 999 999 9999");
-  $("#ContactNumber").val("+63");
+  $(document).on("input", "#ContactNumber", function() {
+    $("#ContactNumber").inputmask("+63 999 999 9999");
+  })
 });
