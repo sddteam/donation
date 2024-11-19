@@ -34,7 +34,7 @@ namespace donation.Services
             var store = new DataStore(Path.Combine(jsonDir, jsonFile));
             var collection = store.GetCollection<Donor>();
 
-            if (donor == null) donor.Name = "Anonymous Donor";
+            if (string.IsNullOrEmpty(donor.Name)) donor.Name = "Anonymous Donor";
 
             bool result = donor != null ? await collection.InsertOneAsync(donor) : false;
 

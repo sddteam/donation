@@ -52,7 +52,7 @@ namespace donation.Controllers
                 {
                     IsSuccess = true,
                     ResultJson = JsonConvert.SerializeObject(donor),
-                    Message = "Successfully saved donor details!"
+                    //Message = "Successfully saved donor details!"
                 });
             }
             catch (Exception ex)
