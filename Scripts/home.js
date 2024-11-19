@@ -113,6 +113,66 @@ $(document).ready(function () {
     const isAnonymous = $("#stayAnonymous").is(":checked");
     //console.log(isAnonymous)
 
+    $.ajax({
+      url: "/Home/SubmitDonorForm", // Correctly map to HomeController
+      method: "POST",
+      dataType: "json",
+      data: {
+        donor: donorData,
+        isAnonymous: isAnonymous,
+        __RequestVerificationToken: requestVerificationToken, // Include token in data
+      },
+      success: function (response) {
+        // Log the full response for debugging
+        console.log("Server Response:", response);
+
+        if (response.IsSuccess) {
+          // Display success message
+          console.log("Donor Data Saved:", response.ResultJson);
+          $("form")[0].reset(); // Clear the form
+        } else {
+          alert("Error: " + (response.Error || response.Message));
+          console.log("Error Details:", response);
+        }
+      },
+      error: function (xhr, status, error) {
+        // Log the error details for debugging
+        console.error("AJAX Error:", {
+          xhr: xhr,
+          status: status,
+          error: error,
+        });
+
+        // Display a generic error message
+        alert("An unexpected error occurred. Please try again later.");
+      },
+    });
+
+    showDonateSwal();
+
+    // Log gathered data and the request token for debugging
+    //console.log("Gathered Data:", donorData);
+    //console.log("Is Anonymous:", isAnonymous);
+    //console.log("Request Verification Token:", requestVerificationToken);
+
+    // Send AJAX POST request
+  });
+
+  $(document).on("input", "#Name", function () {
+    console.log("test")
+    this.value = this.value.replace(/[^a-zA-Z]/g, "");
+  });
+
+  // $(document).on("input", "#ContactNumber", function () {
+  //   this.value = this.value.replace(/[^0-9]/g, "");
+  // });
+
+  $(document).on("input", "form input", function(e) {
+    e.preventDefault();
+
+    const submitBtnEl = $("#btn-submit");
+    const isAnonymous = $("#stayAnonymous").is(":checked");
+
     if (!isAnonymous) {
       console.log("test 125");
 
@@ -129,8 +189,8 @@ $(document).ready(function () {
           },
           ContactNumber: {
             required: false,
-            minlength: 11,
-            maxlength: 11,
+            minlength: 16,
+            maxlength: 16,
           },
         },
         messages: {
@@ -148,90 +208,32 @@ $(document).ready(function () {
         },
       });
 
-      if (!donorForm.valid()) {
-        console.log("test valid)()");
+      if (!$("form#donorForm").valid()) {
+        $(submitBtnEl).attr("disabled", true);
         return;
       }
-
-      $.ajax({
-        url: "/Home/SubmitDonorForm", // Correctly map to HomeController
-        method: "POST",
-        dataType: "json",
-        data: {
-          donor: donorData,
-          isAnonymous: isAnonymous,
-          __RequestVerificationToken: requestVerificationToken, // Include token in data
-        },
-        success: function (response) {
-          // Log the full response for debugging
-          console.log("Server Response:", response);
-
-          if (response.IsSuccess) {
-            // Display success message
-            console.log("Donor Data Saved:", response.ResultJson);
-            $("form")[0].reset(); // Clear the form
-          } else {
-            alert("Error: " + (response.Error || response.Message));
-            console.log("Error Details:", response);
-          }
-        },
-        error: function (xhr, status, error) {
-          // Log the error details for debugging
-          console.error("AJAX Error:", {
-            xhr: xhr,
-            status: status,
-            error: error,
-          });
-
-          // Display a generic error message
-          alert("An unexpected error occurred. Please try again later.");
-        },
-      });
-
-      showDonateSwal();
+      
+      $(submitBtnEl).removeAttr("disabled")
     } else {
-      $.ajax({
-        url: "/Home/SubmitDonorForm", // Correctly map to HomeController
-        method: "POST",
-        dataType: "json",
-        data: {
-          donor: donorData,
-          isAnonymous: isAnonymous,
-          __RequestVerificationToken: requestVerificationToken, // Include token in data
-        },
-        success: function (response) {
-          // Log the full response for debugging
-          console.log("Server Response:", response);
-
-          if (response.IsSuccess) {
-            // Display success message
-            console.log("Donor Data Saved:", response.ResultJson);
-            $("form")[0].reset(); // Clear the form
-          } else {
-            alert("Error: " + (response.Error || response.Message));
-            console.log("Error Details:", response);
-          }
-        },
-        error: function (xhr, status, error) {
-          // Log the error details for debugging
-          console.error("AJAX Error:", {
-            xhr: xhr,
-            status: status,
-            error: error,
-          });
-
-          // Display a generic error message
-          //alert("An unexpected error occurred. Please try again later.");
-        },
-      });
-      showDonateSwal();
+      $(submitBtnEl).removeAttr("disabled")
     }
-
-    // Log gathered data and the request token for debugging
-    //console.log("Gathered Data:", donorData);
-    //console.log("Is Anonymous:", isAnonymous);
-    //console.log("Request Verification Token:", requestVerificationToken);
-
-    // Send AJAX POST request
   });
+
+  $(document).on("change", "#stayAnonymous", function() {
+    const submitBtnEl = $("#btn-submit");
+
+    const checkbox = $(this)
+    if (checkbox.is(":checked")){
+      $("form")[0].reset();
+      $("form").validate().resetForm()
+      $(checkbox).prop("checked", true);
+      $(submitBtnEl).removeAttr("disabled")
+    }
+    else {
+      $(submitBtnEl).attr("disabled", true)
+    }
+  });
+
+  $("#ContactNumber").inputmask("+63 999 999 9999");
+  $("#ContactNumber").val("+63");
 });
