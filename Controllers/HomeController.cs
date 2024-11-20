@@ -37,6 +37,7 @@ namespace donation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> SubmitDonorForm(Donor donor, bool isAnonymous)
         {
+            if (isAnonymous) donor = new Donor();
             try
             {
                 Donor donorResponse = await _donorService.CreateDonor(donor);
