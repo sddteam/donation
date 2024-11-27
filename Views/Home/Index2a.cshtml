@@ -35,23 +35,21 @@
                             </div>
                         </div>
                         <div class="form-container">
-                            @using (Html.BeginForm("SubmitDonorForm", "Home", FormMethod.Post, new { id = "donorForm", autocomplete = "off" }))
+                            @using (Html.BeginForm("SubmitDonorForm", "Home", FormMethod.Post, new { id = "donorForm", autocomplete = "on" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <label for="Name">Donor Name</label>
-                                <input type="text" id="Name" name="Name" minlength="3" maxlength="75" placeholder="Full Name" required autocomplete="off" aria-autocomplete="none"/>
-                                @*<input type="text" id="Name" placeholder="Full Name (Optional)" />
-                                    <div id="nameWarning" class="warning" style="display:none; color: red;">Please enter a name.</div>*@
+                                <input type="text" id="Name" name="Name" minlength="3" maxlength="75" placeholder="Full Name" required autocomplete="on" aria-autocomplete="name"/>
+
 
                                 <label for="Email">Email Address</label>
-                                @*<input type="email" id="Email" placeholder="Email Address (Optional)" />*@
-                                <input type="email" id="Email" name="Email" maxlength="30" placeholder="Email Address (Optional)" autocomplete="off" aria-autocomplete="none"/>
-                                @*<div id="emailWarning" class="warning" style="display:none; color: red;">Please enter a valid email address.</div>*@
+               
+                                <input type="email" id="Email" name="Email" maxlength="30" placeholder="Email Address (Optional)" autocomplete="on" aria-autocomplete="email"/>
+                              
 
                                 <label for="ContactNumber">Contact Number</label>
-                                <input type="tel" id="ContactNumber" name="ContactNumber" placeholder="+63 912 345 6789 (Optional)" autocomplete="off" aria-autocomplete="none" />
-                                @*<input type="tel" id="ContactNumber" placeholder="09**-****-****" />*@
-                                @*<div id="contactWarning" class="warning" style="display:none; color: red;">Please enter a valid 11-digit contact number.</div>*@
+                                <input type="tel" id="ContactNumber" name="ContactNumber" placeholder="+63 912 345 6789 (Optional)" autocomplete="on" aria-autocomplete="contactnumber" />
+                            
 
 
                                 <div class="checkbox-group">
