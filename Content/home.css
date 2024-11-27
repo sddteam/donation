@@ -460,7 +460,7 @@ button:disabled {
 @media screen and (min-width: 1440px) {
   .avatar {
     left: -5.5rem;
-    top: -8.5rem;
+    top: -7.5rem;
     width: 60%;
   }
 
