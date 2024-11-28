@@ -8,19 +8,15 @@
   --primary-color: 0, 51, 102;   
   --input-error-color: #dc143c;
   --bg-border-color: #000;
-  --form-container-bg-color: #ffffff;
   --form-container-border-color: #9B9898;
   --bg-input-border-color: #ccc; 
   --input-bg-disable-color: #f2f2f2;
   --input-border-color: #0056b3;
   --input-box-shadow: #0056b34d;
-  --outer-section-bg-color: #ffffff;
   --outer-section-color:  #ffffffb3;
   --outer-section-border-color: #707070;
-  --inner-section-bg-color: #ffffff;
   --btn-bg-disable-color: #808080;
   --btn-bg-enable-color: #003366; 
-  --btn-bg-color: #ffffff;
 }
 
 
@@ -103,7 +99,7 @@ section {
 .inner__section {
   flex-direction: column;
   width: 100%;
-  background: var(--inner-section-bg-color) 0% 0% no-repeat padding-box;
+  background: var(--bs-white) 0% 0% no-repeat padding-box;
   border-radius: 1rem;
   padding: 2rem 1rem 1rem;
 }
@@ -118,7 +114,7 @@ section {
   border-radius: 1rem;
   padding: 1rem;
   border: .0625rem solid var(--form-container-border-color);
-  background: var(--form-container-bg-color);
+  background: var(--bs-white);
 }
 
 .form-container label {
@@ -191,7 +187,7 @@ button:disabled {
   float: inline-end;
   max-width: 15rem;
   background-color: var(--btn-bg-enable-color);
-  color: var(--btn-bg-color);
+  color: var(--bs-white);
   border: none;
   padding: 0.4rem 1rem;
   font-size: clamp(0.75rem, 0.6071rem + 0.7143vw, 0.95rem);
@@ -626,7 +622,7 @@ button:disabled {
 @media screen and (min-width: 768px) {
   .custom-swal-popup {
     padding: 2.25rem 1.5rem 1.5rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: var(--outer-section-color);
     border: .0625rem solid var(--outer-section-border-color);
     position: relative;
     margin: 2rem 2rem 0 2rem;
@@ -637,7 +633,7 @@ button:disabled {
   }
   
   .outer__inner__section__swal {
-    background: #ffffff 0% 0% no-repeat padding-box;
+    background:   var(--bs-white) 0% 0% no-repeat padding-box;
     border-radius: 1.25rem;
     padding: 3rem 1.5rem 1rem;
   }
